@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BreastAware — Breast Health Assessment</title>
+  <meta name="description" content="Recognize breast cancer warning signs, understand screening, and know when to talk to a healthcare professional.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎗️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="nav">
+    <a href="#home" class="brand">🎗️ <span>Breast</span>Aware</a>
+    <button class="menu" aria-label="Menu" aria-expanded="false">☰</button>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#breast-health">Breast Health</a>
+      <a href="#screening">Screening</a>
+      <a href="#check">Check Yourself</a>
+      <a href="#results">Results</a>
+      <a href="#support">Healthcare Support</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Home -->
+    <section id="home" class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Know Your Breast Health</p>
+        <h1>Your breast health matters.</h1>
+        <p class="lead">This short assessment helps you recognize common breast cancer warning signs and understand when you may benefit from speaking with a healthcare professional.</p>
+        <p class="notice"><strong>This tool does not diagnose breast cancer or replace professional medical advice.</strong></p>
+        <div class="row">
+          <a href="#check" class="btn">Start Assessment →</a>
+          <a href="#breast-health" class="btn ghost">Learn the warning signs</a>
+        </div>
+        <ol class="journey">
+          <li>Learn</li><li>Take the 2–3 minute assessment</li><li>Get your guidance pathway</li><li>Talk to a professional if needed</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 2. Breast Health / Warning signs -->
+    <section id="breast-health">
+      <div class="wrap">
+        <h2>Know the Warning Signs</h2>
+        <p class="sub">Get to know what is normal for you, so you notice when something changes.</p>
+        <div class="cards">
+          <div class="card"><span class="ico">🔘</span><h3>New lump</h3><p>A new lump or swelling in the breast or underarm.</p></div>
+          <div class="card"><span class="ico">🩹</span><h3>Skin changes</h3><p>Dimpling, puckering, thickening or an unusual texture.</p></div>
+          <div class="card"><span class="ico">↔️</span><h3>Shape or size changes</h3><p>A new change in the size or shape of one breast.</p></div>
+          <div class="card"><span class="ico">🎯</span><h3>Nipple changes</h3><p>A new change in nipple position or appearance, such as new inversion.</p></div>
+          <div class="card"><span class="ico">💧</span><h3>Unusual discharge</h3><p>Nipple discharge, especially if bloody or spontaneous.</p></div>
+          <div class="card"><span class="ico">⏳</span><h3>Persistent changes</h3><p>Redness, swelling or any change that is unusual for you and does not go away.</p></div>
+        </div>
+        <p class="callout">Notice something unusual? <strong>Don't panic — but don't ignore it.</strong> Talk to a healthcare professional.</p>
+      </div>
+    </section>
+
+    <!-- Screening -->
+    <section id="screening" class="tint">
+      <div class="wrap">
+        <h2>What is breast cancer screening?</h2>
+        <p class="sub">Screening aims to detect breast cancer before symptoms become noticeable. The appropriate screening method and frequency depend on factors such as age and individual risk. Screening recommendations may vary between guidelines and countries, so discuss your personal screening needs with a healthcare professional.</p>
+        <h3>Know the difference</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Screening</th><th>Diagnostic evaluation</th></tr></thead>
+            <tbody>
+              <tr><td>For people who may have no symptoms</td><td>For people with concerning symptoms or findings</td></tr>
+              <tr><td>Looks for cancer before symptoms appear</td><td>Investigates an abnormal finding</td></tr>
+              <tr><td>May involve mammography and other tests depending on age and risk</td><td>May involve clinical examination, imaging, biopsy, etc.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small">The BreastAware assessment is <strong>not</strong> a screening test. It promotes screening awareness and early detection — actual screening is performed through appropriate healthcare services.</p>
+      </div>
+    </section>
+
+    <!-- 3. Check Yourself -->
+    <section id="check">
+      <div class="wrap narrow">
+        <h2>Breast Health Assessment</h2>
+        <p class="sub">15 questions · 4 sections · about 2–3 minutes. Your answers are anonymous.</p>
+
+        <div id="intro" class="panel">
+          <p>This assessment is intended to raise awareness and guide you toward appropriate care. It does <strong>not</strong> diagnose or rule out breast cancer.</p>
+          <label class="consent"><input type="checkbox" id="consent" checked> I agree that my <strong>anonymous</strong> answers (no name, email or contact details) may be stored to improve this project and for academic research.</label>
+          <button id="start" class="btn">Start Assessment →</button>
+        </div>
+
+        <div id="quiz" class="panel" hidden>
+          <div class="progress"><div id="q-bar"></div></div>
+          <div class="qmeta"><span id="q-progress"></span><span id="q-section" class="pill"></span></div>
+          <h3 id="q-text" tabindex="-1"></h3>
+          <p id="q-why" class="why"></p>
+          <div id="q-options" class="opts"></div>
+          <button id="q-back" class="link">← Back</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Results -->
+    <section id="results" class="tint">
+      <div class="wrap narrow">
+        <h2>Your Assessment Result</h2>
+        <p id="no-result" class="sub">Complete the <a href="#check">assessment</a> to see your personalised guidance pathway.</p>
+        <div id="result" hidden>
+          <div id="r-card" class="result">
+            <span id="r-badge" class="badge"></span>
+            <h3 id="r-title"></h3>
+            <div id="r-body"></div>
+            <a id="r-btn" class="btn"></a>
+          </div>
+          <details id="r-why-wrap">
+            <summary>Why did I get this result?</summary>
+            <ul id="r-why"></ul>
+            <p class="small">Your answers were analysed using a rule-based framework built on recognised breast-cancer warning signs and risk factors.</p>
+          </details>
+          <p id="r-screening" class="callout" hidden>📖 You asked for screening information — read <a href="#screening">What is breast cancer screening?</a> and discuss your personal screening needs with a pharmacist or doctor.</p>
+          <p class="notice">ℹ️ The platform provides guidance, not diagnosis. It does not replace clinical examination, mammography, biopsy, or other diagnostic procedures.</p>
+          <button id="restart" class="link">↻ Retake the assessment</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Support -->
+    <section id="support">
+      <div class="wrap">
+        <h2>Talk to a Healthcare Professional</h2>
+        <p class="sub">A pharmacist can provide health education, help you understand your risk information, address questions about medicines and health history, and guide you toward appropriate healthcare services when further evaluation is needed.</p>
+        <div class="flow">
+          <div class="step"><span class="ico">💊</span><h3>Pharmacist</h3><p>Education, risk communication & support</p></div>
+          <div class="arrow">→</div>
+          <div class="step"><span class="ico">🩺</span><h3>Healthcare professional</h3><p>Clinical examination & assessment</p></div>
+          <div class="arrow">→</div>
+          <div class="step"><span class="ico">🏥</span><h3>Diagnostic services</h3><p>Imaging or biopsy, when indicated</p></div>
+        </div>
+        <ul class="checks">
+          <li>Health education and risk communication</li>
+          <li>Support with medication and health history questions</li>
+          <li>Guidance toward appropriate healthcare services</li>
+          <li>Referral when further evaluation is needed</li>
+        </ul>
+        <p class="small">Pharmacists do not diagnose breast cancer — they help you take the right next step.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>🎗️ BreastAware</strong> — From Awareness to Action. Bridging health literacy and clinical pharmacy triage through digital health innovation.</p>
+      <p>Hanya Mahmoud &amp; Manar Yasser · Faculty of Pharmacy, Arab Academy for Science, Technology and Maritime Transport, Alexandria, Egypt · <a href="mailto:hanyamahmoud005@gmail.com">hanyamahmoud005@gmail.com</a></p>
+      <p class="small">This website provides general health information and guidance only. It does not diagnose breast cancer and is not a substitute for professional medical advice, examination or screening. If you have an urgent concern, contact a healthcare provider.</p>
+    </div>
+  </footer>
+</body>
+</html>
