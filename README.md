@@ -1,6 +1,6 @@
 # BreastAware
 
-Static site (`public/`) + one Pages Function (`functions/api/submit.js`) + Cloudflare D1 database.
+Cloudflare Worker (`worker.js`, serves `public/` as static assets + `/api/submit`) + Cloudflare D1 database.
 Triage rules live in `public/logic.js`, shared by the browser and the API. Test: `node test.mjs`.
 
 ## Deploy to Cloudflare (Node 22+ for latest wrangler, or use `npx wrangler@3` on Node 20)
@@ -9,17 +9,16 @@ Triage rules live in `public/logic.js`, shared by the browser and the API. Test:
 npx wrangler login
 npx wrangler d1 create breastaware-db          # copy the database_id into wrangler.toml
 npx wrangler d1 execute breastaware-db --remote --file=schema.sql
-npx wrangler pages project create breastaware --production-branch main
-npx wrangler pages deploy                      # → https://breastaware.pages.dev
+npx wrangler deploy                            # → https://breastaware.<account>.workers.dev
 ```
 
-The D1 binding (`DB`) is read from `wrangler.toml` on deploy.
+Or connect the GitHub repo in Workers & Pages → every push auto-deploys (deploy command: `npx wrangler deploy`).
 
 ## Local dev
 
 ```bash
 npx wrangler d1 execute breastaware-db --local --file=schema.sql
-npx wrangler pages dev                         # http://localhost:8788
+npx wrangler dev                               # http://localhost:8787
 ```
 
 ## Read the data

@@ -1,6 +1,9 @@
 name = "breastaware"
-pages_build_output_dir = "public"
+main = "worker.js"
 compatibility_date = "2025-07-18"
+
+[assets]
+directory = "public"
 
 [[d1_databases]]
 binding = "DB"
